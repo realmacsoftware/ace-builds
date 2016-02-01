@@ -10610,103 +10610,9 @@ function bindKey(win, mac) {
     return {win: win, mac: mac};
 }
 exports.commands = [{
-    name: "showSettingsMenu",
-    bindKey: bindKey("Ctrl-,", "Command-,"),
-    exec: function(editor) {
-        config.loadModule("ace/ext/settings_menu", function(module) {
-            module.init(editor);
-            editor.showSettingsMenu();
-        });
-    },
-    readOnly: true
-}, {
-    name: "goToNextError",
-    bindKey: bindKey("Alt-E", "Ctrl-E"),
-    exec: function(editor) {
-        config.loadModule("ace/ext/error_marker", function(module) {
-            module.showErrorMarker(editor, 1);
-        });
-    },
-    scrollIntoView: "animate",
-    readOnly: true
-}, {
-    name: "goToPreviousError",
-    bindKey: bindKey("Alt-Shift-E", "Ctrl-Shift-E"),
-    exec: function(editor) {
-        config.loadModule("ace/ext/error_marker", function(module) {
-            module.showErrorMarker(editor, -1);
-        });
-    },
-    scrollIntoView: "animate",
-    readOnly: true
-}, {
     name: "selectall",
     bindKey: bindKey("Ctrl-A", "Command-A"),
     exec: function(editor) { editor.selectAll(); },
-    readOnly: true
-}, {
-    name: "centerselection",
-    bindKey: bindKey(null, "Ctrl-L"),
-    exec: function(editor) { editor.centerSelection(); },
-    readOnly: true
-}, {
-    name: "gotoline",
-    bindKey: bindKey("Ctrl-L", "Command-L"),
-    exec: function(editor) {
-        var line = parseInt(prompt("Enter line number:"), 10);
-        if (!isNaN(line)) {
-            editor.gotoLine(line);
-        }
-    },
-    readOnly: true
-}, {
-    name: "fold",
-    bindKey: bindKey("Alt-L|Ctrl-F1", "Command-Alt-L|Command-F1"),
-    exec: function(editor) { editor.session.toggleFold(false); },
-    multiSelectAction: "forEach",
-    scrollIntoView: "center",
-    readOnly: true
-}, {
-    name: "unfold",
-    bindKey: bindKey("Alt-Shift-L|Ctrl-Shift-F1", "Command-Alt-Shift-L|Command-Shift-F1"),
-    exec: function(editor) { editor.session.toggleFold(true); },
-    multiSelectAction: "forEach",
-    scrollIntoView: "center",
-    readOnly: true
-}, {
-    name: "toggleFoldWidget",
-    bindKey: bindKey("F2", "F2"),
-    exec: function(editor) { editor.session.toggleFoldWidget(); },
-    multiSelectAction: "forEach",
-    scrollIntoView: "center",
-    readOnly: true
-}, {
-    name: "toggleParentFoldWidget",
-    bindKey: bindKey("Alt-F2", "Alt-F2"),
-    exec: function(editor) { editor.session.toggleFoldWidget(true); },
-    multiSelectAction: "forEach",
-    scrollIntoView: "center",
-    readOnly: true
-}, {
-    name: "foldall",
-    bindKey: bindKey(null, "Ctrl-Command-Option-0"),
-    exec: function(editor) { editor.session.foldAll(); },
-    scrollIntoView: "center",
-    readOnly: true
-}, {
-    name: "foldOther",
-    bindKey: bindKey("Alt-0", "Command-Option-0"),
-    exec: function(editor) { 
-        editor.session.foldAll();
-        editor.session.unfold(editor.selection.getAllRanges());
-    },
-    scrollIntoView: "center",
-    readOnly: true
-}, {
-    name: "unfoldall",
-    bindKey: bindKey("Alt-Shift-0", "Command-Option-Shift-0"),
-    exec: function(editor) { editor.session.unfold(); },
-    scrollIntoView: "center",
     readOnly: true
 }, {
     name: "findnext",
@@ -10953,37 +10859,6 @@ exports.commands = [{
     scrollIntoView: "cursor",
     readOnly: true
 }, {
-    name: "togglerecording",
-    bindKey: bindKey("Ctrl-Alt-E", "Command-Option-E"),
-    exec: function(editor) { editor.commands.toggleRecording(editor); },
-    readOnly: true
-}, {
-    name: "replaymacro",
-    bindKey: bindKey("Ctrl-Shift-E", "Command-Shift-E"),
-    exec: function(editor) { editor.commands.replay(editor); },
-    readOnly: true
-}, {
-    name: "jumptomatching",
-    bindKey: bindKey("Ctrl-P", "Ctrl-P"),
-    exec: function(editor) { editor.jumpToMatching(); },
-    multiSelectAction: "forEach",
-    scrollIntoView: "animate",
-    readOnly: true
-}, {
-    name: "selecttomatching",
-    bindKey: bindKey("Ctrl-Shift-P", "Ctrl-Shift-P"),
-    exec: function(editor) { editor.jumpToMatching(true); },
-    multiSelectAction: "forEach",
-    scrollIntoView: "animate",
-    readOnly: true
-}, {
-    name: "expandToMatching",
-    bindKey: bindKey("Ctrl-Shift-M", "Ctrl-Shift-M"),
-    exec: function(editor) { editor.jumpToMatching(true, true); },
-    multiSelectAction: "forEach",
-    scrollIntoView: "animate",
-    readOnly: true
-}, {
     name: "passKeysToBrowser",
     bindKey: bindKey(null, null),
     exec: function() {},
@@ -11044,18 +10919,6 @@ exports.commands = [{
     exec: function(editor) { editor.toggleBlockComment(); },
     multiSelectAction: "forEach",
     scrollIntoView: "selectionPart"
-}, {
-    name: "modifyNumberUp",
-    bindKey: bindKey("Ctrl-Shift-Up", "Alt-Shift-Up"),
-    exec: function(editor) { editor.modifyNumber(1); },
-    scrollIntoView: "cursor",
-    multiSelectAction: "forEach"
-}, {
-    name: "modifyNumberDown",
-    bindKey: bindKey("Ctrl-Shift-Down", "Alt-Shift-Down"),
-    exec: function(editor) { editor.modifyNumber(-1); },
-    scrollIntoView: "cursor",
-    multiSelectAction: "forEach"
 }, {
     name: "replace",
     bindKey: bindKey("Ctrl-H", "Command-Option-F"),
